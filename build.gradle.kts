@@ -25,14 +25,6 @@ repositories {
     mavenCentral()
 }
 
-idea {
-    module {
-        val kaptMain = file("build/generated/source/kapt/main")
-        sourceDirs.add(kaptMain)
-        generatedSourceDirs.add(kaptMain)
-    }
-}
-
 object DependencyVersion {
     const val KOTLIN_LOGGING_VERSION = "3.0.0"
     const val LOGBACK_ENCODER = "7.2"
@@ -62,6 +54,14 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
+idea {
+    module {
+        val kaptMain = file("build/generated/source/kapt/main")
+        sourceDirs.add(kaptMain)
+        generatedSourceDirs.add(kaptMain)
+    }
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -69,18 +69,23 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.withType<Wrapper> {
-    gradleVersion = "7.5.1"
-}
-
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.getByName<Jar>("jar") {
+tasks.withType<Wrapper> {
+    gradleVersion = "7.4.2"
+}
+
+tasks.jar {
+    enabled = true
+}
+
+tasks.bootJar {
     enabled = false
 }
 
-defaultTasks("bootRun")
-
-val Project.isSnapshotVersion: Boolean get() = version.toString().endsWith("SNAPSHOT")
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
