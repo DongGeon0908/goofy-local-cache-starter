@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.goofy.localcache.starter.autoconfigure.LocalCacheConfigure,\
+com.goofy.localcache.starter.autoconfigure.LocalCacheProperties,\

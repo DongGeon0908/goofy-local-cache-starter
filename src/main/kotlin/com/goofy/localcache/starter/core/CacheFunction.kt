@@ -1,9 +1,9 @@
 package com.goofy.localcache.starter.core
 
-interface CacheFunction<T> {
-    fun add(key: String, value: T)
+interface CacheFunction {
+    fun add(key: String, value: Any)
 
-    fun get(key: String): T?
+    fun get(key: String): Any?
 
     fun delete(key: String)
 }
