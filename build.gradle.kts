@@ -8,6 +8,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     kotlin("kapt") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
     idea
 }
 
@@ -27,7 +28,8 @@ repositories {
 
 object DependencyVersion {
     const val KOTLIN_LOGGING_VERSION = "3.0.0"
-    const val LOGBACK_ENCODER = "7.2"
+    const val LOGBACK_ENCODER_VERSION = "7.2"
+    const val JACKSON_DATA_FORMAT_VERSION = "2.7.8"
 }
 
 dependencies {
@@ -43,7 +45,7 @@ dependencies {
 
     /** logger */
     implementation("io.github.microutils:kotlin-logging-jvm:${DependencyVersion.KOTLIN_LOGGING_VERSION}")
-    implementation("net.logstash.logback:logstash-logback-encoder:${DependencyVersion.LOGBACK_ENCODER}")
+    implementation("net.logstash.logback:logstash-logback-encoder:${DependencyVersion.LOGBACK_ENCODER_VERSION}")
 
     /** test */
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
